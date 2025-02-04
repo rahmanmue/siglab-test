@@ -68,7 +68,12 @@ const displayData = (data) => {
     listData.innerHTML = "";
 
     if(data.length == 0){
-        listData.innerHTML = `<h1>Data Kosong</h1>`;
+        listData.classList.remove("content")
+        listData.innerHTML = `
+        <div class="center" style="text-align: center">
+            <h1>Data Kosong</h1>
+        </div>
+       `;
         return
     }
 

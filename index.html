@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SigLab Test II</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    
+   
+    <div class="title center">
+        <h1>SigLab Test II</h1>
+        <div class="underline"></div>
+    </div>
+       
+    
+    <div class="sorting">
+        <select id="list-data"></select>
+        <div id="sort-data"></div>
+        <button class="btn search" onclick="handleSortData()">Sort Data</button>
+    </div>
+   
+
+    <div class="filters">
+            <select id="filter-type"></select>
+            <select id="filter-status"></select>
+            <select id="filter-attachment"></select>
+            <select id="filter-discount"></select>
+        <button class="btn search" onclick="handleFilters()">Filter</button>
+    </div>
+
+    <div class="center total">
+        <h2 id="total">0</h2>
+        <button class="btn search" onclick="processData()">Refresh</button>
+    </div>
+
+    <div class="content" id="content"></div>
+
+
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <h3>Popup</h3>
+            <h4 class="discount"></h4>
+            <h4 class="approval"></h4>
+            <button class="close-btn" onclick="closePopup()">
+                close
+            </button>
+        </div>
+    </div>
+
+   
+
+
+<script src="./js/index.js" ></script> 
+</body>
+</html>

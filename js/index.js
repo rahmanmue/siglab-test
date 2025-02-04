@@ -66,7 +66,8 @@ const formatRupiah = (price) => {
 const displayData = (data) => {
     const listData = document.getElementById("content");
     listData.innerHTML = "";
-    document.getElementById("total").textContent = `Total Data : ${data.length}`;
+    const total = document.getElementById("total");
+    total.textContent = `Total Data : ${data.length}`;
 
     
     if(data.length == 0){
@@ -79,7 +80,10 @@ const displayData = (data) => {
         return
     }
 
-    listData.classList.add("content");
+    if (!listData.classList.contains("content")) {
+        listData.classList.add("content");
+    }
+    
     data.forEach(item => {
         const article = document.createElement('article');
         const discountButton = item.discount > 0 ? `<button class="popup-btn btn show" data-id="${item.id}">Show Discount</button>` : "";
@@ -157,7 +161,7 @@ const displayOption = (container, content) => {
 // display list data based on data API to sort data 
 const displaySortData = () => {
     const idListData = document.getElementById('list-data');
-    idListData.innerHTML =  `<option value = "" selected disable hidden>Pilih Data</option>`;
+    idListData.innerHTML =  `<option value = "" selected>Pilih Data</option>`;
 
     const dataTable = [
         {
@@ -227,7 +231,7 @@ const displaySortData = () => {
 
 const displayFilterType = async () => {
     const idFilterType = document.getElementById("filter-type");
-    idFilterType.innerHTML = `<option value = "" selected disable hidden>Semua Type</option>`;
+    idFilterType.innerHTML = `<option value = "" selected disabled>Semua Type</option>`;
 
     try {
         const categoryType = await fetch('./data/category.json');
@@ -251,7 +255,7 @@ const displayFilterType = async () => {
 
 const displayFilterStatus = async () => {
     const idFilterStatus = document.getElementById('filter-status');
-    idFilterStatus.innerHTML = '`<option value = "" selected disable hidden>Semua Status</option>`';
+    idFilterStatus.innerHTML = '`<option value = "" selected>Semua Status</option>`';
 
     const status = [
         {
@@ -270,7 +274,7 @@ const displayFilterStatus = async () => {
 
 const displayFilterAttachment = () => {
     const idFilterAttachment = document.getElementById('filter-attachment');
-    idFilterAttachment.innerHTML = `<option value = "" selected disable hidden>Semua Attachment</option>`;
+    idFilterAttachment.innerHTML = `<option value = "" selected>Semua Attachment</option>`;
 
     const attachment = [
         {
@@ -290,7 +294,7 @@ const displayFilterAttachment = () => {
 
 const displayFilterDiscount = () => {
     const idFilterDiscount = document.getElementById('filter-discount');
-    idFilterDiscount.innerHTML = '`<option value = "" selected disable hidden>Semua Discount</option>`';
+    idFilterDiscount.innerHTML = '`<option value = "" selected>Semua Discount</option>`';
 
     const discount = [
         {
@@ -311,6 +315,10 @@ const displayFilterDiscount = () => {
 
 // function to sortData based on list data ASC DESC
 const sortData = (key, order) => {
+    if(!order || !key){
+        return
+    }
+
     data.sort((a, b) => {
         if(typeof a[key] === "string"){
             return order == "asc" ? a[key].localeCompare(b[key]) : b[key].localeCompare(a[key])

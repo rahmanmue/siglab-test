@@ -66,17 +66,20 @@ const formatRupiah = (price) => {
 const displayData = (data) => {
     const listData = document.getElementById("content");
     listData.innerHTML = "";
+    document.getElementById("total").textContent = `Total Data : ${data.length}`;
 
+    
     if(data.length == 0){
-        listData.classList.remove("content")
+        listData.classList.remove("content");
         listData.innerHTML = `
-        <div class="center" style="text-align: center">
+        <div class="center">
             <h1>Data Kosong</h1>
         </div>
        `;
         return
     }
 
+    listData.classList.add("content");
     data.forEach(item => {
         const article = document.createElement('article');
         const discountButton = item.discount > 0 ? `<button class="popup-btn btn show" data-id="${item.id}">Show Discount</button>` : "";
@@ -101,7 +104,7 @@ const displayData = (data) => {
         listData.appendChild(article);
     });
 
-    document.getElementById("total").textContent = `Total Data : ${data.length}`;
+   
 
     document.addEventListener("click", function(event) {
         if (event.target.classList.contains("popup-btn")) {
@@ -347,8 +350,8 @@ const handleFilters = () => {
         dataFilter = dataFilter.filter((d)=> valueDiscount == "1" ? d.discount > 0  : d.discount == 0);
     }
 
-    data = [...dataFilter]
-    displayData(data);    
+    
+    displayData(dataFilter);    
 
 }
 
